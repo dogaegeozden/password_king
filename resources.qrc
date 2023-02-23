@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="generator_img.png">icons/arrow-circle-double.png</file>
+        <file alias="eye.png">icons/eye.png</file>
+        <file alias="eye-half.png">icons/eye-half.png</file>
+    </qresource>
+    <qresource prefix="/logos">
+        <file alias="password_king_logo.png">logos/password_king_logo.png</file>
+    </qresource>
+</RCC>
