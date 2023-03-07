@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>760</width>
+    <height>645</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Password King Manager</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#centralwidget {
+    }</string>
+  </property>
+  <widget class="QWidget" name="central_widget">
+   <widget class="QLabel" name="header_1_label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>740</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Manjari</family>
+      <pointsize>16</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <stylestrategy>PreferDefault</stylestrategy>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#header_1_label {
+    background: #64ccff;
+    padding-left: 50px;
+	border-radius: 5px;
+	color: white;
+ }</string>
+    </property>
+    <property name="text">
+     <string>Password King Password Manager</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+    <property name="indent">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QListView" name="list_of_passwords_list_view">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>250</width>
+      <height>560</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="cao_group_box">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>340</y>
+      <width>480</width>
+      <height>270</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Create an Object</string>
+    </property>
+    <widget class="QPushButton" name="cao_cancel_button">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>230</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="cao_password_line_edit">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>130</y>
+       <width>270</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="maxLength">
+      <number>100</number>
+     </property>
+     <property name="placeholderText">
+      <string>Enter your password</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cao_add_button">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>230</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="cao_object_name_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="cao_object_name_line_edit">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>50</y>
+       <width>270</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="maxLength">
+      <number>100</number>
+     </property>
+     <property name="placeholderText">
+      <string>Enter the object name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="cao_username_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>User Name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="cao_url_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>170</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>URL</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="cao_username_line_edit">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>90</y>
+       <width>270</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="maxLength">
+      <number>100</number>
+     </property>
+     <property name="placeholderText">
+      <string>Enter your username</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="cao_password_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>130</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Password</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="cao_url_line_edit">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>170</y>
+       <width>270</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="maxLength">
+      <number>1500</number>
+     </property>
+     <property name="placeholderText">
+      <string>Enter the url</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cao_generate_password_button">
+     <property name="geometry">
+      <rect>
+       <x>435</x>
+       <y>130</y>
+       <width>25</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cao_generate_password_button {
+	border: none;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/icons/generator_img.png</normaloff>:/icons/generator_img.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cao_generate_username_button">
+     <property name="geometry">
+      <rect>
+       <x>435</x>
+       <y>90</y>
+       <width>25</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cao_generate_username_button {
+	border: none;
+}</string>
+     </property>
+     <property name="locale">
+      <locale language="English" country="Canada"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/icons/generator_img.png</normaloff>:/icons/generator_img.png</iconset>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="eto_group_box">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>50</y>
+      <width>480</width>
+      <height>270</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Edit The Object</string>
+    </property>
+    <widget class="QPushButton" name="eto_cancel_button">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>230</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="eto_password_line_edit">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>130</y>
+       <width>270</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Enter your password</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="eto_update_button">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>230</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Update</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="eto_object_name_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="eto_object_name_line_edit">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>50</y>
+       <width>270</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Enter the object name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="eto_username_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>User Name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="eto_url_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>170</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>URL</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="eto_username_line_edit">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>90</y>
+       <width>270</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Enter your user name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="eto_password_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>130</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Password</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="eto_url_line_edit">
+     <property name="geometry">
+      <rect>
+       <x>155</x>
+       <y>170</y>
+       <width>270</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Enter the url</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="eto_generate_password_button">
+     <property name="geometry">
+      <rect>
+       <x>435</x>
+       <y>130</y>
+       <width>25</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#eto_generate_password_button {
+	border: none;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/icons/generator_img.png</normaloff>:/icons/generator_img.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="eto_generate_username_button">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>435</x>
+       <y>90</y>
+       <width>25</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#eto_generate_username_button {
+	border: none;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/icons/generator_img.png</normaloff>:/icons/generator_img.png</iconset>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="logo_label">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>10</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resources.qrc">:/logos/password_king_logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menu_bar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>760</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="help_menu">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="help_page_action"/>
+    <addaction name="credits_action"/>
+   </widget>
+   <addaction name="help_menu"/>
+  </widget>
+  <action name="actionPassword_Manager">
+   <property name="text">
+    <string>Password Manager</string>
+   </property>
+  </action>
+  <action name="actionPassword_Generator">
+   <property name="text">
+    <string>Password Generator</string>
+   </property>
+  </action>
+  <action name="actionUser_Name_Generator">
+   <property name="text">
+    <string>User Name Generator</string>
+   </property>
+  </action>
+  <action name="import_action">
+   <property name="text">
+    <string>Import Passwords</string>
+   </property>
+  </action>
+  <action name="export_action">
+   <property name="text">
+    <string>Export Passwords</string>
+   </property>
+  </action>
+  <action name="credits_action">
+   <property name="text">
+    <string>Credits</string>
+   </property>
+  </action>
+  <action name="help_page_action">
+   <property name="text">
+    <string>Help page</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
