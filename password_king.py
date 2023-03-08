@@ -27,8 +27,6 @@ from user_interfaces.create_a_new_safe_win_ui import Ui_CreateNewSafeDialog
 # Resources
 import resources_rc
 
-# Custom functions
-from custom_functions.list_to_string import convert
 
 # Configuring debugging feature code
 basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -142,7 +140,7 @@ class CreateNewSafeDialog(QDialog, Ui_CreateNewSafeDialog):
                             new_safe_file_path = str(Path(Path.home(), "Desktop", f'{new_password_file_name}.zip'))
                             # Creating a new password file temporarly 
                             with open(new_password_file_path, "w") as new_password_file:
-                                new_password_file.write("")
+                                new_password_file.write("new file")
                             # Creating a password protected safe(zip)
                             compress(new_password_file_path, None, new_safe_file_path, new_safe_password, 9)
                             # Removing the temporary unprotected password file.
@@ -221,19 +219,19 @@ class EditDataUsernameGeneratorDialog(QDialog, Ui_UsernameGeneratorDialog):
         # Checking if capitalize_checkbox widget's check state is equal to checked
         if capitalize_checkbox_state == 2:
             # Creating a random_username which's first letter is capital
-            random_username = convert(random_username).capitalize()
+            random_username = "".join(random_username).capitalize()
         
         # Checking if capitalize_checkbox widget's check state is equal to unchecked
         elif capitalize_checkbox_state == 0:
             # Creating a random username which's first letter is not capital
-            random_username = convert(random_username)
+            random_username = "".join(random_username)
 
         # Checking the check state of the include_numbers_checkbox widget is equal to checked
         if include_numbers_checkbox_state == 2:
             # Creating a variable called random_number_amount which is equal to random integer in between 1 to 5
             random_number_amount = int(choices(list_of_numbers[1:5], k=1)[0])
             # Creating a variabe called random_numbers which is equal to a 1 to 5 character long number in string form
-            random_numbers = convert(choices(list_of_numbers, k=random_number_amount))
+            random_numbers = "".join(choices(list_of_numbers, k=random_number_amount))
             # Concatenating the random_username string with the random_numbers string
             random_username += random_numbers
 
@@ -300,7 +298,7 @@ class EditDataPasswordGeneratorDialog(QDialog, Ui_PasswordGeneratorDialog):
         shuffle(new_password_char_list)
 
         # Creating a new password from the new_password_char_list list
-        random_password = convert(new_password_char_list)
+        random_password = "".join(new_password_char_list)
 
         # Setting the password_line_edit widget's text
         self.password_line_edit.setText(random_password)
@@ -343,17 +341,17 @@ class CreateDataUsernameGeneratorDialog(QDialog, Ui_UsernameGeneratorDialog):
         # Checking the if the check state of the capitalize_checkbox widget is equal to checked
         if capitalize_checkbox_state == 2:
             # Creating a random_username which's first letter is capital
-            random_username = convert(random_username).capitalize()
+            random_username = "".join(random_username).capitalize()
         # Checking if the check state of the capitalize_checkbox widget is equal to unchecked
         elif capitalize_checkbox_state == 0:
             # Creating a random_username which's first letter is not capital
-            random_username = convert(random_username)
+            random_username = "".join(random_username)
         # Checking if the check state of the include_numbers_checkbox widget is equal to checked
         if include_numbers_checkbox == 2:
             # Creating a variable called random_numbers_amount which is equal to random integer in between 1 to 5
             random_number_amount = int(choices(list_of_numbers[1:5], k=1)[0])
             # Creating a variabe called random_numbers which is equal to a 1 to 5 character long number in string form
-            random_numbers = convert(choices(list_of_numbers, k=random_number_amount))
+            random_numbers = "".join(choices(list_of_numbers, k=random_number_amount))
             # Concatenating the random_username string with the random_numbers string
             random_username += random_numbers
 
@@ -413,7 +411,7 @@ class CreateDataPasswordGeneratorDialog(QDialog, Ui_PasswordGeneratorDialog):
         # Suffleing the random_chars_list list
         shuffle(random_chars_list)
         # Creating a random password by creating a string from the random_chars_list list's items
-        random_password = convert(random_chars_list)
+        random_password = "".join(random_chars_list)
         # Setting the password_line_edit widget's text value
         self.password_line_edit.setText(random_password)
 
@@ -554,6 +552,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             file_path_to_save = f'{str(QFileDialog.getSaveFileName(self, dir=str(Path(Path.home(), "Documents")), filter=filters, selectedFilter=inital_filter,)[0])}.zip'
         # Creating a password protected compressed folder.
         compress(password_file_path, None, file_path_to_save, zip_password, 9)
+        # Delete the password file for security
+        remove(password_file_path)
 
     def add(self):
         """Add an item to password objects list, getting the text from the QLineEdit fields and then clearing them after the job."""
@@ -622,37 +622,47 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """A function that updates the passwords in the password json file"""
         # Loading the password data
         self.load()
-        # Creating a list from the selected indexes in list_of_passwords_list_view
-        indexes = self.list_of_passwords_list_view.selectedIndexes()
-        # Checking if any of the list items has been selected. Hint: Indexes is a single-item list in single-select mode.
-        if indexes:
-            # Creating a variable called index which is the selected item's identifier in string form 
-            index = indexes[0]
-            # Creating a variable called new_object_name from the eto_object_name_line_edit widget's text value
-            new_object_name = self.eto_object_name_line_edit.text()
-            # Creating a variable called new_username from the eto_username_line_edit widget's text value
-            new_username = self.eto_username_line_edit.text()
-            # Creating a variable called new_password from the eto_password_line_edit widget's text value
-            new_password = self.eto_password_line_edit.text()
-            # Creating a variable called new_url from the eto_url_line_edit widget's text value
-            new_url = self.eto_url_line_edit.text()
-            # Changing the password object's object name to new_object_name
-            self.model.passwords[index.row()][0] = new_object_name
-            # Changing the password object's username to new_username
-            self.model.passwords[index.row()][1] = new_username
-            # Changing the password object's pasword to new_password
-            self.model.passwords[index.row()][2] = new_password
-            # Changing the password object's url to new_url
-            self.model.passwords[index.row()][3] = new_url
-            # Triggering refresh
-            self.model.layoutChanged.emit()
-            # Clearing the selection in the list_of_passwords_list_view list view
-            self.list_of_passwords_list_view.clearSelection()
-            # Clearing the input areas
-            self.eto_object_name_line_edit.setText("")
-            self.eto_username_line_edit.setText("")
-            self.eto_password_line_edit.setText("")
-            self.eto_url_line_edit.setText("")
+        # Try to update password
+        try:
+            # Creating a list from the selected indexes in list_of_passwords_list_view
+            indexes = self.list_of_passwords_list_view.selectedIndexes()
+            # Checking if any of the list items has been selected. Hint: Indexes is a single-item list in single-select mode.
+            if indexes:
+                # Creating a variable called index which is the selected item's identifier in string form 
+                index = indexes[0]
+                # Creating a variable called new_object_name from the eto_object_name_line_edit widget's text value
+                new_object_name = self.eto_object_name_line_edit.text()
+                # Creating a variable called new_username from the eto_username_line_edit widget's text value
+                new_username = self.eto_username_line_edit.text()
+                # Creating a variable called new_password from the eto_password_line_edit widget's text value
+                new_password = self.eto_password_line_edit.text()
+                # Creating a variable called new_url from the eto_url_line_edit widget's text value
+                new_url = self.eto_url_line_edit.text()
+                # Changing the password object's object name to new_object_name
+                self.model.passwords[index.row()][0] = new_object_name
+                # Changing the password object's username to new_username
+                self.model.passwords[index.row()][1] = new_username
+                # Changing the password object's pasword to new_password
+                self.model.passwords[index.row()][2] = new_password
+                # Changing the password object's url to new_url
+                self.model.passwords[index.row()][3] = new_url
+                # Triggering refresh
+                self.model.layoutChanged.emit()
+                # Clearing the selection in the list_of_passwords_list_view list view
+                self.list_of_passwords_list_view.clearSelection()
+                # Clearing the input areas
+                self.eto_object_name_line_edit.setText("")
+                self.eto_username_line_edit.setText("")
+                self.eto_password_line_edit.setText("")
+                self.eto_url_line_edit.setText("")
+                self.eto_info_label.setText("")
+        
+        # Instructing the computer about what to do when the app fails to update the passwords.
+        except:
+            # Changing the eto_info_label widget's text
+            self.eto_info_label.setText("Try to save first")
+            # Changing the eto_info_label widget's style sheet
+            self.eto_info_label.setStyleSheet(u"#eto_info_label {color: red;}")
 
     def cancel_editing(self):
         """A function that clears the edit object QLineEdit Widgets and cancels the selection"""
@@ -685,8 +695,8 @@ class LoginWindow(QMainWindow, Ui_LoginWindow):
         self.load()
         # Connecting the select_the_zip_file_button with the select_the_zip_file function in a way that the function will going to trigger with a pressed signal
         self.select_the_zip_file_button.pressed.connect(self.select_the_zip_file)
-        # Connecting the unlock_button with the show_main_window function in a way that the function will going to trigger with a press signal
-        self.unlock_button.pressed.connect(self.show_main_window)
+        # Connecting the unlock_button with the unlock_the_safe function in a way that the function will going to trigger with a press signal
+        self.unlock_button.pressed.connect(self.unlock_the_safe)
         # Connecting the credits_action menu bar item with the show_credits_dialog function in a way that the function will going to trigger with a trigger signal
         self.credits_action.triggered.connect(show_credits_dialog)
         # Connecting the help_page_action menu bar item with the show_the_help_page function in a way that the function will going to trigger with a trigger signal
@@ -756,11 +766,12 @@ class LoginWindow(QMainWindow, Ui_LoginWindow):
             # Skipping without doing anything.
             pass
 
-    def show_main_window(self):
-        """A function which shows the main window"""
+    def unlock_the_safe(self):
+        """A function which unlocks the password protected zip file, read the password file's contents and shows the main window"""
+        # Creating a boolean called unlock_validity_status which False by default
         unlock_validity_status = False
 
-        # Trying to execute the code that inside the try block
+        # Creating a code block which reads the password from the password_line_edit_text widget, tries to unlock the zip and sets the unlock_validity_status to True.
         try:
             # Creating a global variable called zip_password
             global zip_password
@@ -780,10 +791,17 @@ class LoginWindow(QMainWindow, Ui_LoginWindow):
             global password_file_path
             # Initializing the variable with a path which leads to the password_file
             password_file_path = str(Path(base_dir, "password_folder", password_file_name))
-            unlock_validity_status = True
-            # Creating an empty file. Hint: This is help full for packaging. Pyinstaller doesn't collect the folder if it's empty
-            with open(str(Path(base_dir, "password_folder", 'hodor')), "w") as f:
-                pass
+            # Checking if password_folder is not empty
+            if len(listdir(Path(base_dir, "password_folder"))) != 0:
+                # Creating a boolean called unlock_validtiy_status which is True by default
+                unlock_validity_status = True
+            # Checking if the password_folder is empty. Hint: If the password_folder is empty it means application failed to unlock the folder
+            else:
+                # Setting the info_label widget's text
+                self.info_label.setText("Wrong password")
+                # Setting the info_label widget's style sheet
+                self.info_label.setStyleSheet(u"#info_label {color: red;}")
+            
         # Instructing the computer about what to do if the application fails to execute the code inside the try block
         except Exception:
             # Setting the info_label widget's text
@@ -800,6 +818,8 @@ class LoginWindow(QMainWindow, Ui_LoginWindow):
             main_window = MainWindow()
             # Opening the main window
             main_window.show().exec_()
+            # Deleting the file password file after reading it's contents for security
+            remove(password_file_path)
 
 def show_the_help_page():
     """A function which opens the help page in the default browser"""

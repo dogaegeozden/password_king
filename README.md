@@ -17,6 +17,5 @@ Safe files must be 1-24 characters long. And can only include letters, numeric d
 Password king forces you to use strong passwords. So, passwords must be between 20-40 characters long, include letters, numbers and the following symbols @$!#%*?&
 #### Saving changes
 To save the changes do right click and click to the save button
-
 ### Unlocking
 To unlock a safe select the file from the file system, enter the password and press to the unlock button.
